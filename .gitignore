@@ -1,0 +1,13 @@
+# Archivos del sistema operativo (Mac/Windows)
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración del editor
+.vscode/
+
+# Logs de errores
+*.log
+
+# Node.js para empaquetar o usar preprocesadores
+node_modules/
+dist/
