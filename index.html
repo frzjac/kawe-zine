@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_right_alt" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">    
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -44,6 +44,50 @@
                 <span class="material-symbols-outlined icono-flecha">arrow_right_alt</span>
             </button>
         </section>
+
+        <section id="page-2" class="zine-page" style="display: none; opacity: 0;">
+            
+            <div class="territorio-texto">
+                <h2 class="titulo-seccion">El Piedemonte</h2>
+                <div class="linea-decorativa"></div>
+                <p class="parrafo-zine">
+                    Donde los Andes se rinden ante la inmensidad verde. En <strong>Villagarzón</strong>, 
+                    la altura de la montaña abraza la humedad de la selva para cultivar nuestra esencia.
+                </p>
+                <p class="parrafo-zine acento">
+                    Un portal entre dos mundos.
+                </p>
+            </div>
+
+            <div class="territorio-visual">
+                <div id="lottie-territorio" class="lottie-container"></div>
+            </div>
+
+            <div class="territorio-rio">
+                <svg class="svg-rio" viewBox="0 0 100 400" preserveAspectRatio="xMidYMax slice">
+                    <path class="path-rio" 
+                          d="M50,0 Q80,50 40,100 T60,200 T30,300 T50,400" 
+                          fill="none" 
+                          stroke="var(--color-acento-principal)" 
+                          stroke-width="2" 
+                          stroke-linecap="round"/>
+                </svg>
+            </div>
+
+        </section>
+        <nav id="zine-nav" class="zine-nav" style="display: none; opacity: 0;">
+            
+            <button id="btn-prev" class="nav-arrow" title="Volver">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            
+            <span id="nav-indicador" class="nav-indicator">02 / 05</span>
+            
+            <button id="btn-next" class="nav-arrow" title="Avanzar">
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+
+        </nav>
     </main>
     
 
