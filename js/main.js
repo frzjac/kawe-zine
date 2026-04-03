@@ -1,7 +1,5 @@
 console.log("¡Hola, Káwe! El Despertar del Origen está en marcha.");
 
-
-
 document.addEventListener('DOMContentLoaded', () => {    
     
     const animacionPortada = lottie.loadAnimation({
@@ -32,7 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const page2 = document.getElementById('page-2');
     const page3 = document.getElementById('page-3');
     const page4 = document.getElementById('page-4');
+    const page5 = document.getElementById('page-5');
     const audioSelva = document.getElementById('audio-selva');
+   
+
+    const btnExtraer = document.getElementById('btn-extraer');
+    const btnTexto = document.querySelector('.btn-goteo .btn-texto');
 
     // Configurar el volumen del audio para que sea un ambiente sutil (30%)
     audioSelva.volume = 0.7;
@@ -95,8 +98,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 navIndicador.innerText = "03 / 05";
             }})
             .to(page3, { opacity: 1, duration: 0.5 })
-            .from(".minga-header h2, .minga-header p", { y: 20, opacity: 0, duration: 0.5, stagger: 0.2 })
-            .from(".btn-minga", { y: 40, opacity: 0, duration: 0.6, stagger: 0.15, ease: "back.out(1.2)" }, "-=0.2");
+            .fromTo(".minga-header h2, .minga-header p", { y: 20, opacity: 0 },{y: 0, opacity: 1, duration: 0.6, stagger: 0.2 })
+            .fromTo(".btn-minga", { y: 40, opacity: 0 },{y: 0, opacity: 1, duration: 0.6, stagger: 0.2, ease: "back.out(1.5)" }, "-=0.2");
+    }
+    else if (paginaActual === 3) {        
+        // Transición P3 -> P4
+            const tl = gsap.timeline();
+            tl.to(page3, { opacity: 0, duration: 0.5, onComplete: () => {
+                page3.style.display = 'none';
+                page4.style.display = 'flex';
+                paginaActual = 4;
+                navIndicador.innerText = "04 / 05";
+            }})
+            .to(page4, { opacity: 1, duration: 0.5 })
+            .fromTo(".svg-gota", { y: -50, opacity: 0 },{ y: 0, opacity: 1, duration: 1, ease: "bounce.out" } )
+            .fromTo(".goteo-texto h2, .goteo-texto p", { y: 20, opacity: 0},{ y: 0, opacity: 1, duration: 0.6, stagger: 0.2 }, "-=0.5")
+            .fromTo(".btn-goteo", { scale: 0.8, opacity: 0},{ scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.5)" }, "-=0.2");      
     }
   });
 
@@ -125,18 +142,41 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     else if (paginaActual === 3) {
-        // Transición P3 -> P2
-        // Transición P3 -> P2
-            const tl = gsap.timeline();
-            tl.to(page3, { opacity: 0, duration: 0.5, onComplete: () => {
-                page3.style.display = 'none';
-                page2.style.display = 'grid';
-                paginaActual = 2;
-                navIndicador.innerText = "02 / 05";
-            }})
-            .to(page2, { opacity: 1, duration: 0.5 });      
+    // Transición P3 -> P2        
+        const tl = gsap.timeline();
+        tl.to(page3, { opacity: 0, duration: 0.5, onComplete: () => {
+            page3.style.display = 'none';
+            page2.style.display = 'grid';
+            paginaActual = 2;
+            navIndicador.innerText = "02 / 05";
+        }})
+        .to(page2, { opacity: 1, duration: 0.5 });                
     }
-    
+    else if (paginaActual === 4) {
+      // Transición P4 -> P3
+        const tl = gsap.timeline();
+        tl.to(page4, { opacity: 0, duration: 0.5, onComplete: () => {
+          page4.style.display = 'none';
+          page3.style.display = 'block';
+          paginaActual = 3;
+          navIndicador.innerText = "03 / 05";
+          animacionLlenado.pause(0); // Pausamos la animación de llenado de la gota
+          document.getElementById('btn-extraer').classList.remove('presionado');
+          document.querySelector('.btn-goteo .btn-texto').innerText = "Mantén presionado para extraer";
+        }})
+        .to(page3, { opacity: 1, duration: 0.5 });
+    }
+    else if (paginaActual === 5){
+        // Transición P5 -> P4
+        const tl = gsap.timeline();
+        tl.to(page5, { opacity: 0, duration: 0.5, onComplete: () => {
+            page5.style.display = 'none';
+            page4.style.display = 'flex';
+            paginaActual = 4;
+            navIndicador.innerText = "04 / 05";
+        }})
+        .to(page4, { opacity: 1, duration: 0.5 });
+}
     // ..
 
 
@@ -177,6 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.to(modalHistoria, { opacity: 1, duration: 0.4 });
             gsap.from(".modal-content", { y: 50, scale: 0.9, opacity: 0, duration: 0.5, ease: "back.out(1.5)" });
             gsap.fromTo(".modal-linea", { width: 0 }, { width: "80px", duration: 0.5, delay: 0.3 });
+
+            // correccion modal y navegación
+            gsap.to(zineNav, { y: 50, opacity: 0, pointerEvents: "none", duration: 0.3 });
         });
     });
 
@@ -185,10 +228,127 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(modalHistoria, { 
             opacity: 0, 
             duration: 0.3, 
-            onComplete: () => { modalHistoria.style.display = 'none'; }
+            onComplete: () => { 
+                modalHistoria.style.display = 'none';
+                gsap.to(zineNav, { y: 0, opacity: 1, pointerEvents: "auto", duration: 0.4, ease: "black.out" }); 
+            }
         });
     });
-  
-  
+    
+    const tlRipples = gsap.timeline({ repeat: -1, delay: 0.5 });
+
+    tlRipples.to(".ripple", {
+        attr : { r: 90 },    // El círculo se expande a un radio de 90px
+        opacity: 0.4,          // Se desvanece un poco
+        duration: 3,         // Tarda 2 segundos en expandirse y desvanecerse
+        ease: "power1.out",    // Curva de aceleración suave
+        stagger: 1.5         // Cada ripple comienza 0.5s después del anterior
+    })
+    .to(".ripple", {
+        opacity: 0,          // Se desvanece completamente
+        duration: 1,
+        stagger: 1.5
+    }, "-=0.2"); // Comienza a desvanecerse un poco antes de que termine la expansión
+
+    gsap.to(".svg-gota", {
+        y: 15,
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    // Interacción de Botón (Mantener Presionado)
+
+
+    const animacionLlenado = gsap.to("#btn-fill",{
+        width: "100%",
+        duration: 3.5,
+        ease: "linear",
+        paused: true,
+        onComplete: () => {
+            //btnTexto.innerText = "¡Extracción Completa!";
+
+            // pausa la animación de las ondas
+            btnExtraer.style.pointerEvents = 'none';
+            btnTexto.innerText = "¡Extraído!";
+            tlRipples.pause();
+
+            const tlExito = gsap.timeline();
+
+            tlExito.to(btnExtraer, {
+                boxShadow: "0 0 40px var(--color-acento-principal)",
+                scale: 1.05,
+                duration: 0.2,
+                yoyo: true,
+                repeat: 1
+            })
+            .to(".svg-gota", { y: 100, opacity: 0, duration: 0.4, ease: "power2.in" }, "-=0.2")
+            .to("#overlay-extraccion", {
+                scale: 40, // Se hace gigante hasta tapar todo el viewport
+                duration: 0.8,
+                ease: "power2.inOut"
+            })
+            .call(() => {
+                page4.style.display = 'none';
+                page5.style.display = 'flex';
+                page5.style.opacity = '1';
+                paginaActual = 5;
+                navIndicador.innerText = "05 / 05";
+            })
+            .to("#overlay-extraccion", {
+                opacity: 0,
+                duration: 1,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    // Limpieza: devolvemos los elementos de la P4 a su estado original por si el usuario vuelve
+                    gsap.set("#overlay-extraccion", { scale: 0, opacity: 1 });
+                    animacionLlenado.pause(0);
+                    btnExtraer.classList.remove('presionado');
+                    btnTexto.innerText = "Mantén presionado para extraer";
+                    btnExtraer.style.pointerEvents = 'auto';
+                    gsap.set(".svg-gota", { y: 0, opacity: 1 });
+                    tlRipples.play();
+                }
+            })
+            .fromTo(".botella-silueta", 
+                { y: 50, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.2)" }, 
+                "-=0.5"
+            )
+            .fromTo(".revelacion-texto h2, .revelacion-texto p, .revelacion-texto button", 
+                { x: 30, opacity: 0 }, 
+                { x: 0, opacity: 1, duration: 0.6, stagger: 0.2 }, 
+                "-=0.6"
+            );        
+        }
+    });
+
+    // Eventos para Desktop (Mouse) y Mobile (Touch)
+    const iniciarLlenado = () => {
+        btnExtraer.classList.add('presionado');
+        btnTexto.innerText = "Extrayendo...";
+        animacionLlenado.play(); // Inicia la animación hacia adelante
+        // Hacemos que las ondas vayan más rápido por la tensión
+        tlRipples.timeScale(2.5); 
+    };
+
+    const detenerLlenado = () => {
+        if (animacionLlenado.progress() < 1) { // Solo retrocede si no se completó
+            btnExtraer.classList.remove('presionado');
+            btnTexto.innerText = "Mantén presionado para extraer";
+            animacionLlenado.reverse(); // Vacía la barra suavemente
+            tlRipples.timeScale(1); // Velocidad normal de las ondas
+        }
+    };
+
+    //  botoenes
+    btnExtraer.addEventListener('mousedown', iniciarLlenado);
+    btnExtraer.addEventListener('mouseup', detenerLlenado);
+    btnExtraer.addEventListener('mouseleave', detenerLlenado); // Por si arrastran el mouse fuera
+
+    btnExtraer.addEventListener('touchstart', (e) => { e.preventDefault(); iniciarLlenado(); });
+    btnExtraer.addEventListener('touchend', detenerLlenado);
+    
 });
 

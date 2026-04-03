@@ -33,22 +33,23 @@ gsap.to(".hoja-der", {
 });
 
 // Ave 1 (paneo suave a la derecha con leve subida)
-    gsap.to(".ave-1", {
-        x: 100,            // Se mueve 100px a la derecha
-        y: -30,            // Sube 30px suavemente
-        duration: 15,      // Tarda 25 segundos (muy lento)
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1
-    });
+gsap.to(".ave-1", {
+    x: 100,            // Se mueve 100px a la derecha
+    y: -30,            // Sube 30px suavemente
+    duration: 15,      // Tarda 25 segundos (muy lento)
+    ease: "sine.inOut",
+    yoyo: true,
+    repeat: -1
+});
 
-    // Ave 2 (paneo más corto a la izquierda con leve descenso)
-    gsap.to(".ave-2", {
-        x: -80,            // Se mueve 80px a la izquierda
-        y: 20,             // Baja 20px suavemente
-        rotation: 5,       // Gira 5 grados para dar ángulo
-        duration: 20,      
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1
-    });
+// Ave 2 (paneo más corto a la izquierda con leve descenso)
+gsap.to(".ave-2", {
+    x: -80,            // Se mueve 80px a la izquierda
+    y: 20,             // Baja 20px suavemente
+    rotation: 5,       // Gira 5 grados para dar ángulo
+    duration: 20,      
+    ease: "sine.inOut",
+    yoyo: true,
+    repeat: -1
+});
+
