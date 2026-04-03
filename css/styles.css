@@ -248,6 +248,128 @@ body {
     padding: 5rem;
 }
 
+.minga-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    gap: 4rem;
+}
+
+.minga-header {
+    max-width: 800px;
+}
+
+.instruccion-interactiva {
+    font-size: 0.9rem;
+    color: var(--color-acento-principal);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 2rem;
+    animation: palpitar 2s infinite ease-in-out;
+}
+
+@keyframes palpitar {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Estilos de los iconos SVG dentro de los botones */
+.svg-icono-minga {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.btn-minga:hover .svg-icono-minga {
+    transform: scale(1.1) translateY(-5px);
+}
+
+/* ==========================================================================
+   9. VENTANA EMERGENTE (MODAL DE LA HISTORIA)
+   ========================================================================== */
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 15, 15, 0.85); /* Fondo oscuro semitransparente */
+    backdrop-filter: blur(8px); /* Efecto cristal */
+    z-index: 50; /* Por encima de la página, por debajo del navegador global */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+}
+
+.modal-content {
+    background-color: var(--color-fondo-secundario);
+    border: 1px solid var(--color-selva-clara);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    padding: 3rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.btn-cerrar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--color-texto-principal);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.btn-cerrar:hover {
+    color: var(--color-acento-principal);
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+/* Placeholder para tu futura fotografía */
+.img-placeholder {
+    background-color: var(--color-selva-oscura);
+    height: 350px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-selva-clara);
+    padding: 2rem;
+    text-align: center;
+    border: 1px dashed var(--color-acento-principal);
+}
+
+.img-placeholder .icono-grande {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--color-acento-principal);
+}
+
+.nota-recurso {
+    font-size: 0.85rem;
+    color: #888;
+    font-style: italic;
+}
+
+.modal-linea {
+    margin-bottom: 1.5rem;
+}
+
 /* ==========================================================================
    5. BOTÓN DE UMBRAL (Diseño y Animación)
    ========================================================================== */
@@ -367,7 +489,7 @@ body {
     transform: scale(1.2); /* Efecto de crecimiento al pasar el mouse */
 }
 
-/* Deshabilitar botón visualmente si estamos en los extremos */
+
 .nav-arrow:disabled {
     opacity: 0.3;
     cursor: not-allowed;
@@ -380,4 +502,96 @@ body {
     color: var(--color-acento-principal);
     letter-spacing: 3px;
     font-weight: 600;
+}
+
+#page-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: radial-gradient(circle at center, var(--color-selva-oscura) 0%, var(--color-fondo-base) 80%);
+}
+
+.goteo-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+    z-index: 2; /* Por encima de las ondas de fondo */
+}
+
+/* --- Animación de la Gota Central --- */
+.svg-gota {
+    width: 50px;
+    height: 50px;
+    color: var(--color-acento-principal);
+    filter: drop-shadow(0 0 10px rgba(250, 214, 165, 0.4));
+}
+
+/* --- Fondo SVGs (Ondas) --- */
+.goteo-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vw; /* Circular perfecto */
+    max-width: 800px;
+    max-height: 800px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.svg-ripples circle {
+    fill: none;
+    stroke: var(--color-acento-principal);
+    stroke-width: 0.5;
+    opacity: 0; /* Inician invisibles */
+}
+
+/* --- Botón "Mantener Presionado" --- */
+.btn-goteo {
+    position: relative;
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-texto-principal);
+    font-family: var(--fuente-titulos);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 1.5rem 4rem;
+    border: 1px solid rgba(250, 214, 165, 0.3);
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden; /* Para que el relleno no se salga de los bordes */
+    user-select: none; /* Evita seleccionar el texto por accidente al presionar */
+    -webkit-user-select: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.btn-goteo .btn-texto {
+    position: relative;
+    z-index: 2; /* Por encima del relleno líquido */
+    transition: color 0.3s ease;
+}
+
+/* El líquido dorado que llena el botón */
+.btn-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%; /* Inicia vacío. GSAP controlará esto */
+    background-color: var(--color-acento-principal);
+    z-index: 1;
+}
+
+.btn-goteo.presionado {
+    border-color: var(--color-acento-principal);
+    transform: scale(0.98); /* Se hunde ligeramente al presionarlo */
+}
+.btn-goteo.presionado .btn-texto {
+    color: var(--color-fondo-base); /* El texto se hace oscuro para contrastar con el dorado */
+    font-weight: 800;
 }

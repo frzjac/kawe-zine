@@ -75,6 +75,100 @@
             </div>
 
         </section>
+
+        <section id="page-3" class="zine-page" style="display: none; opacity: 0;">
+            
+            <div class="minga-layout">
+                <div class="minga-header">
+                    <h2 class="titulo-seccion">Fuerza Compartida</h2>
+                    <p class="parrafo-zine">
+                        El alma de Káwe no nace en las máquinas, nace en las manos. En la tradición de la Minga, el trabajo colectivo de las <strong>mujeres de Villagarzón</strong> transforma la tierra.
+                    </p>
+                    <p class="instruccion-interactiva">Selecciona un elemento para revelar la historia ↓</p>
+                </div>
+
+                <div class="contenedor-botones-minga">
+                    
+                    <button class="btn-minga" data-id="cultivo">
+                        <svg viewBox="0 0 24 24" class="svg-icono-minga">
+                            <path d="M12 2C7.5 2 4 5.5 4 10C4 15 12 22 12 22C12 22 20 15 20 10C20 5.5 16.5 2 12 2ZM12 14C10.3 14 9 12.7 9 11C9 9.3 10.3 8 12 8C13.7 8 15 9.3 15 11C15 12.7 13.7 14 12 14Z" fill="currentColor"/>
+                        </svg>
+                        <span>El Cultivo</span>
+                    </button>
+
+                    <button class="btn-minga" data-id="mujeres">
+                        <svg viewBox="0 0 24 24" class="svg-icono-minga">
+                            <path d="M18 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2ZM12 16C10.3 16 9 14.7 9 13H15C15 14.7 13.7 16 12 16ZM12 8C13.7 8 15 9.3 15 11H9C9 9.3 10.3 8 12 8Z" fill="currentColor"/>
+                        </svg>
+                        <span>Las Mujeres</span>
+                    </button>
+
+                    <button class="btn-minga" data-id="origen">
+                        <svg viewBox="0 0 24 24" class="svg-icono-minga">
+                            <path d="M12 2L2 12H5V22H19V12H22L12 2ZM12 14C10.9 14 10 13.1 10 12C10 10.9 10.9 10 12 10C13.1 10 14 10.9 14 12C14 13.1 13.1 14 12 14Z" fill="currentColor"/>
+                        </svg>
+                        <span>El Origen</span>
+                    </button>
+
+                </div>
+            </div>
+
+            <div id="modal-historia" class="modal-overlay" style="display: none; opacity: 0;">
+                <div class="modal-content">
+                    <button id="btn-cerrar-modal" class="btn-cerrar">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                    
+                    <div class="modal-grid">
+                        <div class="modal-imagen img-placeholder">
+                            <span class="material-symbols-outlined icono-grande">photo_camera</span>
+                            <p class="nota-recurso">Recomendación: Insertar aquí fotografía en blanco y negro o alto contraste de mujeres caficultoras.</p>
+                        </div>
+                        <div class="modal-texto">
+                            <h3 id="historia-titulo" class="titulo-seccion" style="font-size: 2rem;">Título</h3>
+                            <div class="linea-decorativa modal-linea"></div>
+                            <p id="historia-parrafo" class="parrafo-zine">Texto de la historia...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="page-4" class="zine-page" style="display: none; opacity: 0;">
+            
+            <div class="goteo-bg">
+                <svg viewBox="0 0 200 200" class="svg-ripples">
+                    <circle cx="100" cy="100" r="10" class="ripple r1" />
+                    <circle cx="100" cy="100" r="10" class="ripple r2" />
+                    <circle cx="100" cy="100" r="10" class="ripple r3" />
+                </svg>
+            </div>
+
+            <div class="goteo-layout">
+                
+                <div class="contenedor-gota">
+                    <svg viewBox="0 0 24 24" class="svg-gota">
+                        <path d="M12 21C16.9706 21 21 16.9706 21 12C21 9.5 16.5 3 12 2C7.5 3 3 9.5 3 12C3 16.9706 7.02944 21 12 21Z" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <div class="goteo-texto">
+                    <h2 class="titulo-seccion">18 Horas. <br> Gota a Gota.</h2>
+                    <p class="parrafo-zine">
+                        La paciencia del Piedemonte destilada en frío. <br> 
+                        El tiempo es nuestro ingrediente más valioso.
+                    </p>
+                </div>
+
+                <button id="btn-extraer" class="btn-goteo">
+                    <span class="btn-texto">Mantén presionado para extraer</span>
+                    <div id="btn-fill" class="btn-fill"></div>
+                </button>
+
+            </div>
+        </section>
+
         <nav id="zine-nav" class="zine-nav" style="display: none; opacity: 0;">
             
             <button id="btn-prev" class="nav-arrow" title="Volver">
