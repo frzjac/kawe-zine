@@ -174,6 +174,7 @@ body {
     grid-template-columns: 1fr 1.2fr 0.8fr;
     gap: 3rem;
     align-items: center;
+    background: radial-gradient(circle at center, var(--color-selva-clara) 0%, var(--color-selva-oscura) 60%);    
 }
 
 .titulo-seccion {
@@ -210,11 +211,46 @@ body {
     font-style: italic;
 }
 
-/* Contenedor del Lottie de la P2 */
-#lottie-territorio {
+
+.territorio-visual {
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px; 
+    border-radius: 20px; 
+    overflow: hidden; 
+}
+
+#video-territorio {
+    width: 100%;
+    height: auto;
+    display: block; 
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.1); 
+}
+
+/* El Overlay de Desvanecimiento (Feathering) */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    
+    
+    /* box-shadow: inset 0 0 60px 40px #10251b; */
+    
+    
+    background: 
+        linear-gradient(to right, #10251b 0%, transparent 15%, transparent 85%, #10251b 100%),
+        linear-gradient(to bottom, #10251b 0%, transparent 15%, transparent 85%, #10251b 100%);
 }
 
 /* Animación de Dibujo del Río SVG */
@@ -246,6 +282,7 @@ body {
     grid-template-rows: repeat(2, 1fr);
     gap: 15px;
     padding: 5rem;
+    background: radial-gradient(circle at center, var(--color-selva-clara) 0%, var(--color-selva-oscura) 70%);    
 }
 
 .minga-layout {
@@ -291,7 +328,32 @@ body {
 /* ==========================================================================
    9. VENTANA EMERGENTE (MODAL DE LA HISTORIA)
    ========================================================================== */
-.modal-overlay {
+.modal-imagen {
+    width: 100%;
+    height: 348px;
+    border-radius: 8px;
+    overflow: hidden; /* Evita que las fotos se salgan de los bordes curvos */
+    position: relative;
+    border: 1px solid var(--color-selva-clara);
+}
+
+#historia-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* recorta la foto proporcionalmente para llenar el cuadro */  
+    
+    /* filter: grayscale(80%) sepia(20%) contrast(1.2);  */
+    transition: opacity 0.3s ease;
+}
+
+
+.img-placeholder {
+    width: 100%;
+    height: 100%;
+    
+}
+
+   .modal-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -613,7 +675,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-fondo-base);
+    background: radial-gradient(circle at center, var(--color-selva-clara) 0%, var(--color-selva-oscura) 70%);  
 }
 
 .revelacion-layout {
@@ -624,45 +686,36 @@ body {
     align-items: center;
 }
 
-/* Silueta temporal de la botella (Mientras diseñas el PNG final) */
 .revelacion-visual {
     position: relative;
-    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
-.botella-silueta {
-    width: 140px;
-    height: 380px;
-    background-color: var(--color-selva-oscura);
-    border-radius: 20px 20px 10px 10px;
+/* Estilos de la Botella PNG */
+.img-botella {
+    width: 100%;
+    max-width: 220px; /* Ajusta este valor según qué tan ancha sea tu foto real */
+    height: auto;
     position: relative;
     z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.8); /* Le da volumen a la oscuridad */
-    border: 1px solid rgba(250, 214, 165, 0.1);
+    /* Sombra inteligente que sigue el contorno del PNG transparente */
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+    /* Un ligero ajuste de contraste para que resalte en fondos oscuros */
+    contrast: 1.1; 
 }
 
-/* El logo "Káwe" brillando en la oscuridad de la botella */
-.logo-kawe-temp {
-    color: var(--color-acento-principal);
-    font-family: var(--fuente-titulos);
-    font-weight: 800;
-    font-size: 1.5rem;
-    letter-spacing: 5px;
-    transform: rotate(-90deg); /* Texto vertical */
-    text-shadow: 0 0 15px var(--color-acento-principal);
-}
-
+/* Resplandor adaptado al centro de la imagen */
 .botella-glow {
     position: absolute;
-    width: 200px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(250,214,165,0.2) 0%, rgba(15,15,15,0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px; /* Debe ser un poco más ancho que la botella */
+    height: 350px;
+    background: radial-gradient(circle, rgba(250, 214, 165, 0.25) 0%, rgba(15, 15, 15, 0) 65%);
     z-index: 1;
     filter: blur(20px);
 }

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loop: true,
         autoplay: true,
         // rutas de animación         
-        path: 'https://assets2.lottiefiles.com/packages/lf20_yzoqyyqf.json' 
+        path: '../assets/lotties/coffee-s1.json' 
     });
 
     // Lottie  para la Página 2 ( hojas/naturaleza)
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const page4 = document.getElementById('page-4');
     const page5 = document.getElementById('page-5');
     const audioSelva = document.getElementById('audio-selva');
+    const videoTerritorio = document.getElementById('video-territorio');
    
 
     const btnExtraer = document.getElementById('btn-extraer');
@@ -60,10 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 page1.style.display = 'none'; // Oculta completamente la página 1
                 page2.style.display = 'grid'; // Muestra la página 2
                 zineNav.style.display = 'flex'; // Muestra la navegación
-                animacionTerritorio.play();
+                videoTerritorio.play();
                 paginaActual = 2; // Actualizamos la página actual
-                navIndicador.innerText = "02 / 05" // Actualizamos el indicador de página
-                console.log("Transición a la página 2 completada.");
+                navIndicador.innerText = "02 / 05" // Actualizamos el indicador de página                
+                    
             }
         })
         .to(page2, { opacity: 1, duration: 0.6, ease: "power1.Out" })
@@ -185,15 +186,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const historiasMinga = {
         "cultivo": {
             titulo: "La Sombra y la Tierra",
-            texto: "A la sombra de árboles nativos, cultivamos sin forzar. Respetamos los tiempos de la selva y el suelo húmedo de Villagarzón, dejando que la naturaleza dicte el sabor de cada grano."
+            texto: "A la sombra de árboles nativos, cultivamos sin forzar. Respetamos los tiempos de la selva y el suelo húmedo de Villagarzón, dejando que la naturaleza dicte el sabor de cada grano.",
+            imagen: "../assets/img/cafetal.webp"
         },
         "mujeres": {
             titulo: "Manos Resilientes",
-            texto: "Las mujeres de la región son las guardianas del proceso. Su recolección manual y selectiva asegura que solo los granos en su punto perfecto de maduración lleguen a la botella."
+            texto: "Las mujeres de la región son las guardianas del proceso. Su recolección manual y selectiva asegura que solo los granos en su punto perfecto de maduración lleguen a la botella.",
+            imagen: "../assets/img/caficultora.webp"
         },
         "origen": {
             titulo: "Un Legado Vivo",
-            texto: "Cada taza de Káwe no es solo café, es una Minga. Es el esfuerzo comunitario y la resistencia de una región que transformó su historia a través de la agricultura de especialidad."
+            texto: "Cada taza de Káwe no es solo café, es una Minga. Es el esfuerzo comunitario y la resistencia de una región que transformó su historia a través de la agricultura de especialidad.",
+            imagen: "../assets/img/recolectores.jpg"
         }
     };
 
@@ -201,6 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalHistoria = document.getElementById('modal-historia');
     const btnCerrarModal = document.getElementById('btn-cerrar-modal');
     
+    const imgModal = document.getElementById('historia-imagen');
+    const placeholderModal = document.getElementById('placeholder-modal');
+
     // Abrir Modal
     botonesMinga.forEach(boton => {
         boton.addEventListener('click', function() {
@@ -211,6 +218,17 @@ document.addEventListener('DOMContentLoaded', () => {
             // Inyectar textos
             document.getElementById('historia-titulo').innerText = data.titulo;
             document.getElementById('historia-parrafo').innerText = data.texto;
+
+            if (data.imagen) {
+                imgModal.src = data.imagen;
+                imgModal.style.display = 'block';
+                placeholderModal.style.display = 'none';
+                gsap.fromTo(imgModal, { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" });
+            } else {
+                // Si no hay imagen muestra el placeholder
+                imgModal.style.display = 'none';
+                placeholderModal.style.display = 'flex';
+            }
             
             // Mostrar y animar el modal
             modalHistoria.style.display = 'flex';
@@ -311,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     tlRipples.play();
                 }
             })
-            .fromTo(".botella-silueta", 
+            .fromTo(".img-botella", 
                 { y: 50, opacity: 0 }, 
                 { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.2)" }, 
                 "-=0.5"
